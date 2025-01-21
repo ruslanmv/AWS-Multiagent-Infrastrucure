@@ -1,0 +1,155 @@
+## Base
+
+graph TD
+    A[User] --> B[AWS Amplify VE React App]
+    B --> C[API Gateway]
+    C --> D[Amazon Cognito]
+    C --> E[AWS Lambda Authorizer]
+    E --> F[AWS Lambda Connect]
+    F --> G[Bedrock Agent]
+    G --> H[Bedrock Model]
+    G --> I[Amazon S3 Model Logging]
+    H --> J[Step 1]
+    J --> K[Step 2]
+    K --> L[Step n]
+    L --> M[Knowledge Base]
+    L --> N[AWS Lambda Hot News]
+    L --> O[AWS Lambda Dashboard]
+    M --> P[Amazon OpenSearch]
+    N --> Q[Amazon S3 Hot News]
+    O --> R[Amazon S3 Dashboard]
+
+    subgraph "Corporate Data Center"
+        S[Red Hat OpenShift]
+        S --> T[Dashboard]
+        S --> U[Dashboard Batch]
+    end
+
+    F --> V[AWS Lambda Disconnect]
+    V --> W[Amazon RDS MySQL]
+
+
+
+#Orchestrator
+
+we include the muulti agent technology
+
+```mermaid
+
+graph TD
+    A[User] --> B[AWS Amplify VE React App]
+    B --> C[API Gateway]
+    C --> D[Amazon Cognito]
+    C --> E[AWS Lambda Authorizer]
+    E --> F[AWS Lambda Connect]
+    F --> G[Orchestrator Agent]
+    
+    %% Orchestrator selecting actions
+    G --> H1[Agent 1: Bedrock Agent]
+    G --> H2[Agent 2: Analytics Agent]
+    G --> H3[Agent 3: Notification Agent]
+
+    %% Bedrock Agent flow
+    H1 --> I1[Bedrock Model]
+    I1 --> J1[Step 1]
+    J1 --> K1[Step 2]
+    K1 --> L1[Step n]
+    L1 --> M1[Knowledge Base]
+    M1 --> P1[Amazon OpenSearch]
+
+    %% Analytics Agent flow
+    H2 --> I2[Analytics Pipeline]
+    I2 --> Q2[Amazon S3 Analytics Data]
+    Q2 --> R2[Visualization Dashboard]
+
+    %% Notification Agent flow
+    H3 --> I3[Notification Manager]
+    I3 --> Q3[Amazon SNS]
+    Q3 --> R3[User Notifications]
+
+    %% Hot News and Dashboard integrations
+    L1 --> N[AWS Lambda Hot News]
+    L1 --> O[AWS Lambda Dashboard]
+    N --> Q[Amazon S3 Hot News]
+    O --> R[Amazon S3 Dashboard]
+
+    subgraph "Corporate Data Center"
+        S[Red Hat OpenShift]
+        S --> T[Dashboard]
+        S --> U[Dashboard Batch]
+    end
+
+    %% Disconnect and MySQL flow
+    F --> V[AWS Lambda Disconnect]
+    V --> W[Amazon RDS MySQL]
+
+
+```
+
+
+Full diagram we include the compliance.
+```mermaid
+graph TD
+    A[User] --> B[AWS Amplify VE React App]
+    B --> C[API Gateway]
+    C --> D[Amazon Cognito]
+    C --> E[AWS Lambda Authorizer]
+    E --> F[AWS Lambda Connect]
+    F --> G[Orchestrator Agent]
+    
+    %% Orchestrator selecting actions
+    G --> H1[Agent 1: Bedrock Agent]
+    G --> H2[Agent 2: Analytics Agent]
+    G --> H3[Agent 3: Notification Agent]
+
+    %% Guardrails
+    subgraph "Information Guardrails"
+        GR1[Data Validation Layer]
+        GR2[Access Control Layer IAM Policies]
+        GR3[Logging and Monitoring Layer]
+        GR4[Privacy Compliance Layer PII Masking]
+    end
+
+    %% Guardrails applied
+    B --> GR1
+    C --> GR2
+    G --> GR3
+    GR1 --> GR4
+    GR4 --> H1
+    GR4 --> H2
+    GR4 --> H3
+
+    %% Bedrock Agent flow
+    H1 --> I1[Bedrock Model]
+    I1 --> J1[Step 1]
+    J1 --> K1[Step 2]
+    K1 --> L1[Step n]
+    L1 --> M1[Knowledge Base]
+    M1 --> P1[Amazon OpenSearch]
+
+    %% Analytics Agent flow
+    H2 --> I2[Analytics Pipeline]
+    I2 --> Q2[Amazon S3 Analytics Data]
+    Q2 --> R2[Visualization Dashboard]
+
+    %% Notification Agent flow
+    H3 --> I3[Notification Manager]
+    I3 --> Q3[Amazon SNS]
+    Q3 --> R3[User Notifications]
+
+    %% Hot News and Dashboard integrations
+    L1 --> N[AWS Lambda Hot News]
+    L1 --> O[AWS Lambda Dashboard]
+    N --> Q[Amazon S3 Hot News]
+    O --> R[Amazon S3 Dashboard]
+
+    subgraph "Corporate Data Center"
+        S[Red Hat OpenShift]
+        S --> T[Dashboard]
+        S --> U[Dashboard Batch]
+    end
+
+    %% Disconnect and MySQL flow
+    F --> V[AWS Lambda Disconnect]
+    V --> W[Amazon RDS MySQL]
+```
