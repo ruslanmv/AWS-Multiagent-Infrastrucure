@@ -1,0 +1,64 @@
+{
+  "name": "production-orchestrator",
+  "region": "us-east-1",
+  "agents": [
+    {
+      "name": "BedrockAgent",
+      "agent_type": "bedrock",
+      "description": "AI agent powered by AWS Bedrock for natural language tasks",
+      "endpoint": "arn:aws:lambda:us-east-1:123456789012:function:bedrock-agent",
+      "timeout": 60,
+      "retry_attempts": 3,
+      "enabled": true,
+      "metadata": {
+        "model_id": "anthropic.claude-v2",
+        "max_tokens": 2000
+      }
+    },
+    {
+      "name": "AnalyticsAgent",
+      "agent_type": "analytics",
+      "description": "Data analytics and insights agent",
+      "endpoint": "arn:aws:lambda:us-east-1:123456789012:function:analytics-agent",
+      "timeout": 45,
+      "retry_attempts": 2,
+      "enabled": true,
+      "metadata": {
+        "data_sources": ["s3", "rds"],
+        "cache_ttl": 300
+      }
+    },
+    {
+      "name": "NotificationAgent",
+      "agent_type": "notification",
+      "description": "Handles email, SMS, and push notifications",
+      "endpoint": "arn:aws:lambda:us-east-1:123456789012:function:notification-agent",
+      "timeout": 30,
+      "retry_attempts": 3,
+      "enabled": true,
+      "metadata": {
+        "sns_topic_arn": "arn:aws:sns:us-east-1:123456789012:notifications",
+        "ses_region": "us-east-1"
+      }
+    }
+  ],
+  "guardrails": {
+    "enabled": true,
+    "types": [
+      "data_validation",
+      "access_control",
+      "logging_monitoring",
+      "privacy_compliance"
+    ],
+    "pii_detection": true,
+    "encryption_at_rest": true,
+    "audit_logging": true,
+    "iam_policies": [
+      "arn:aws:iam::123456789012:policy/OrchestratorAccessPolicy"
+    ]
+  },
+  "max_concurrent_tasks": 20,
+  "default_timeout": 30,
+  "enable_caching": true,
+  "log_level": "INFO"
+}
